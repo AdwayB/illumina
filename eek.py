@@ -79,10 +79,11 @@ while True:
     # Break the loop if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
-
+print("Face duration: {:.2f}s".format(face_duration))
+print("Hand duration: {:.2f}s".format(hand_duration))
 # Release the webcam and close all windows
 cap.release()
 cv2.destroyAllWindows()
 
-# Use eye tracking to improve gaze function
+# Use eye tracking to improve gaze function3
 # Use gesture recognition to improve hand function
