@@ -30,12 +30,12 @@ def detect_faces_hands(frame):
 
 # Open webcam
 cap = cv2.VideoCapture(0)
-
+total_face = 0
+total_hand = 0
 face_start_time = None
 face_duration = 0
-
-gaze_start_time = None
-gaze_duration = 0
+hand_start_time = None
+hand_duration = 0
 looking_at_camera = False
 
 while True:
@@ -54,19 +54,10 @@ while True:
         if face_start_time is None:
             face_start_time = time.time()
         face_duration = time.time() - face_start_time
-
-        # Check if face is looking at the camera
-        if not looking_at_camera:
-            gaze_start_time = time.time()
-            looking_at_camera = True
     else:
+        total_face += face_duration
         face_start_time = None
         face_duration = 0
-
-        # Update gaze duration
-        if looking_at_camera:
-            gaze_duration = time.time() - gaze_start_time
-            looking_at_camera = False
 
     # Update hand duration
     if hand_detected:
@@ -74,6 +65,7 @@ while True:
             hand_start_time = time.time()
         hand_duration = time.time() - hand_start_time
     else:
+        total_hand += hand_duration
         hand_start_time = None
         hand_duration = 0
 
@@ -83,7 +75,6 @@ while True:
     # Log the duration of face, hands, and gaze
     print("Face duration: {:.2f}s".format(face_duration))
     print("Hand duration: {:.2f}s".format(hand_duration))
-    print("Gaze duration: {:.2f}s".format(gaze_duration))
 
     # Break the loop if 'q' is pressed
     if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -92,3 +83,6 @@ while True:
 # Release the webcam and close all windows
 cap.release()
 cv2.destroyAllWindows()
+
+# Use eye tracking to improve gaze function
+# Use gesture recognition to improve hand function
