@@ -77,10 +77,11 @@ while True:
     print("Hand duration: {:.2f}s".format(hand_duration))
 
     # Break the loop if 'q' is pressed
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    if cv2.waitKey(1) & 0xFF == ord('s'):
         break
-print("Face duration: {:.2f}s".format(face_duration))
-print("Hand duration: {:.2f}s".format(hand_duration))
+
+print("Total Face duration: {:.2f}s".format(total_face))
+print("Total Hand duration: {:.2f}s".format(total_hand))
 # Release the webcam and close all windows
 cap.release()
 cv2.destroyAllWindows()
