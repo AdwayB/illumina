@@ -54,8 +54,9 @@ while True:
         if face_start_time is None:
             face_start_time = time.time()
         face_duration = time.time() - face_start_time
-        total_face += face_duration
+
     else:
+        total_face += face_duration
         face_start_time = None
         face_duration = 0
 
@@ -64,8 +65,8 @@ while True:
         if eyes_start_time is None:
             eyes_start_time = time.time()
         eyes_duration = time.time() - eyes_start_time
-        total_eyes += eyes_duration
     else:
+        total_eyes += eyes_duration
         eyes_start_time = None
         eyes_duration = 0
 
